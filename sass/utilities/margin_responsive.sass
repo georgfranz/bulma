@@ -1,0 +1,434 @@
+// Responsive margins and paddings
+// Produces is-marginless-mobile or has-padding-vertical-mobile
+// You should overwrite the vars if you don't need all variants
+
+@import "mixins"
+
+$margin_device_list: "mobile", "tablet", "tablet-only", "touch", "desktop", "desktop-only", "until-widescreen", "widescreen", "widescreen-only", "until-fullhd", "fullhd" !default
+$padding_device_list: "mobile", "tablet", "tablet-only", "touch", "desktop", "desktop-only", "until-widescreen", "widescreen", "widescreen-only", "until-fullhd", "fullhd" !default
+
+$side_list: ( "all": ( "top", "right", "bottom", "left" ), "vertical": ( "top", "bottom" ), "horizontal": ( "left", "right" ), "top": ( "top" ), "right": ( "right" ), "bottom": ( "bottom" ), "left": ( "left " )  ) !default
+
+$default_margin: 1rem !default
+$default_padding: 1rem !default
+
+@mixin create_margin( $position_list, $val, $position_key, $important: !important )
+  @if $position_key == "all"
+      margin: $val $important
+  @else
+    @each $position in $position_list
+      margin-#{$position}: $val $important
+
+@mixin create_padding( $position_list, $val, $position_key, $important: !important )
+  @if $position_key == "all"
+      padding: $val $important
+  @else
+    @each $position in $position_list
+      padding-#{$position}: $val $important
+
+@each $size_id, $position_list in $side_list
+  @if $size_id == "all"
+    .has-margin
+      @include create_margin( $position_list, $default_margin, $size_id, null )
+  @else
+    .has-margin-#{$size_id}
+      @include create_margin( $position_list, $default_margin, $size_id, null )
+
+@each $size_id, $position_list in $side_list
+  @if $size_id == "all"
+    .is-marginless
+      @include create_margin( $position_list, 0, $size_id, null )
+  @else
+    .is-marginless-#{$size_id}
+      @include create_margin( $position_list, 0, $size_id, null )
+
+@if index( $margin_device_list, "mobile" )
+  +mobile
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .has-margin-mobile
+          @include create_margin( $position_list, $default_margin, $size_id )
+      @else
+        .has-margin-#{$size_id}-mobile
+          @include create_margin( $position_list, $default_margin, $size_id )
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .is-marginless-mobile
+          @include create_margin( $position_list, 0, $size_id )
+      @else
+        .is-marginless-#{$size_id}-mobile
+          @include create_margin( $position_list, 0, $size_id )
+
+@if index( $margin_device_list, "tablet" )
+  +tablet
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .has-margin-tablet
+          @include create_margin( $position_list, $default_margin, $size_id )
+      @else
+        .has-margin-#{$size_id}-tablet
+          @include create_margin( $position_list, $default_margin, $size_id )
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .is-marginless-tablet
+          @include create_margin( $position_list, 0, $size_id )
+      @else
+        .is-marginless-#{$size_id}-tablet
+          @include create_margin( $position_list, 0, $size_id )
+
+@if index( $margin_device_list, "tablet-only" )
+  +tablet-only
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .has-margin-tablet-only
+          @include create_margin( $position_list, $default_margin, $size_id )
+      @else
+        .has-margin-#{$size_id}-tablet-only
+          @include create_margin( $position_list, $default_margin, $size_id )
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .is-marginless-tablet-only
+          @include create_margin( $position_list, 0, $size_id )
+      @else
+        .is-marginless-#{$size_id}-tablet-only
+          @include create_margin( $position_list, 0, $size_id )
+
+@if index( $margin_device_list, "touch" )
+  +touch
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .has-margin-touch
+          @include create_margin( $position_list, $default_margin, $size_id )
+      @else
+        .has-margin-#{$size_id}-touch
+          @include create_margin( $position_list, $default_margin, $size_id )
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .is-marginless-touch
+          @include create_margin( $position_list, 0, $size_id )
+      @else
+        .is-marginless-#{$size_id}-touch
+          @include create_margin( $position_list, 0, $size_id )
+
+@if index( $margin_device_list, "desktop" )
+  +desktop
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .has-margin-desktop
+          @include create_margin( $position_list, $default_margin, $size_id )
+      @else
+        .has-margin-#{$size_id}-desktop
+          @include create_margin( $position_list, $default_margin, $size_id )
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .is-marginless-desktop
+          @include create_margin( $position_list, 0, $size_id )
+      @else
+        .is-marginless-#{$size_id}-desktop
+          @include create_margin( $position_list, 0, $size_id )
+
+@if index( $margin_device_list, "desktop-only" )
+  +desktop-only
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .has-margin-desktop-only
+          @include create_margin( $position_list, $default_margin, $size_id )
+      @else
+        .has-margin-#{$size_id}-desktop-only
+          @include create_margin( $position_list, $default_margin, $size_id )
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .is-marginless-desktop-only
+          @include create_margin( $position_list, 0, $size_id )
+      @else
+        .is-marginless-#{$size_id}-desktop-only
+          @include create_margin( $position_list, 0, $size_id )
+
+@if index( $margin_device_list, "until-widescreen" )
+  +until-widescreen
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .has-margin-until-widescreen
+          @include create_margin( $position_list, $default_margin, $size_id )
+      @else
+        .has-margin-#{$size_id}-until-widescreen
+          @include create_margin( $position_list, $default_margin, $size_id )
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .is-marginless-until-widescreen
+          @include create_margin( $position_list, 0, $size_id )
+      @else
+        .is-marginless-#{$size_id}-until-widescreen
+          @include create_margin( $position_list, 0, $size_id )
+
+@if index( $margin_device_list, "widescreen" )
+  +widescreen
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .has-margin-widescreen
+          @include create_margin( $position_list, $default_margin, $size_id )
+      @else
+        .has-margin-#{$size_id}-widescreen
+          @include create_margin( $position_list, $default_margin, $size_id )
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .is-marginless-widescreen
+          @include create_margin( $position_list, 0, $size_id )
+      @else
+        .is-marginless-#{$size_id}-widescreen
+          @include create_margin( $position_list, 0, $size_id )
+
+@if index( $margin_device_list, "widescreen-only" )
+  +widescreen-only
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .has-margin-widescreen-only
+          @include create_margin( $position_list, $default_margin, $size_id )
+      @else
+        .has-margin-#{$size_id}-widescreen-only
+          @include create_margin( $position_list, $default_margin, $size_id )
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .is-marginless-widescreen-only
+          @include create_margin( $position_list, 0, $size_id )
+      @else
+        .is-marginless-#{$size_id}-widescreen-only
+          @include create_margin( $position_list, 0, $size_id )
+
+@if index( $margin_device_list, "until-fullhd" )
+  +until-fullhd
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .has-margin-until-fullhd
+          @include create_margin( $position_list, $default_margin, $size_id )
+      @else
+        .has-margin-#{$size_id}-until-fullhd
+          @include create_margin( $position_list, $default_margin, $size_id )
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .is-marginless-until-fullhd
+          @include create_margin( $position_list, 0, $size_id )
+      @else
+        .is-marginless-#{$size_id}-until-fullhd
+          @include create_margin( $position_list, 0, $size_id )
+
+@if index( $margin_device_list, "fullhd" )
+  +fullhd
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .has-margin-fullhd
+          @include create_margin( $position_list, $default_margin, $size_id )
+      @else
+        .has-margin-#{$size_id}-fullhd
+          @include create_margin( $position_list, $default_margin, $size_id )
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .is-marginless-fullhd
+          @include create_margin( $position_list, 0, $size_id )
+      @else
+        .is-marginless-#{$size_id}-fullhd
+          @include create_margin( $position_list, 0, $size_id )
+
+
+@each $size_id, $position_list in $side_list
+  @if $size_id == "all"
+    .has-padding
+      @include create_padding( $position_list, $default_padding, $size_id, null )
+  @else
+    .has-padding-#{$size_id}
+      @include create_padding( $position_list, $default_padding, $size_id, null )
+
+@each $size_id, $position_list in $side_list
+  @if $size_id == "all"
+    .is-paddingless
+      @include create_padding( $position_list, 0, $size_id, null )
+  @else
+    .is-paddingless-#{$size_id}
+      @include create_padding( $position_list, 0, $size_id, null )
+
+@if index( $padding_device_list, "mobile" )
+  +mobile
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .has-padding-mobile
+          @include create_padding( $position_list, $default_padding, $size_id )
+      @else
+        .has-padding-#{$size_id}-mobile
+          @include create_padding( $position_list, $default_padding, $size_id )
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .is-paddingless-mobile
+          @include create_padding( $position_list, 0, $size_id )
+      @else
+        .is-paddingless-#{$size_id}-mobile
+          @include create_padding( $position_list, 0, $size_id )
+
+@if index( $padding_device_list, "tablet" )
+  +tablet
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .has-padding-tablet
+          @include create_padding( $position_list, $default_padding, $size_id )
+      @else
+        .has-padding-#{$size_id}-tablet
+          @include create_padding( $position_list, $default_padding, $size_id )
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .is-paddingless-tablet
+          @include create_padding( $position_list, 0, $size_id )
+      @else
+        .is-paddingless-#{$size_id}-tablet
+          @include create_padding( $position_list, 0, $size_id )
+
+@if index( $padding_device_list, "tablet-only" )
+  +tablet-only
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .has-padding-tablet-only
+          @include create_padding( $position_list, $default_padding, $size_id )
+      @else
+        .has-padding-#{$size_id}-tablet-only
+          @include create_padding( $position_list, $default_padding, $size_id )
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .is-paddingless-tablet-only
+          @include create_padding( $position_list, 0, $size_id )
+      @else
+        .is-paddingless-#{$size_id}-tablet-only
+          @include create_padding( $position_list, 0, $size_id )
+
+@if index( $padding_device_list, "touch" )
+  +touch
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .has-padding-touch
+          @include create_padding( $position_list, $default_padding, $size_id )
+      @else
+        .has-padding-#{$size_id}-touch
+          @include create_padding( $position_list, $default_padding, $size_id )
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .is-paddingless-touch
+          @include create_padding( $position_list, 0, $size_id )
+      @else
+        .is-paddingless-#{$size_id}-touch
+          @include create_padding( $position_list, 0, $size_id )
+
+@if index( $padding_device_list, "desktop" )
+  +desktop
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .has-padding-desktop
+          @include create_padding( $position_list, $default_padding, $size_id )
+      @else
+        .has-padding-#{$size_id}-desktop
+          @include create_padding( $position_list, $default_padding, $size_id )
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .is-paddingless-desktop
+          @include create_padding( $position_list, 0, $size_id )
+      @else
+        .is-paddingless-#{$size_id}-desktop
+          @include create_padding( $position_list, 0, $size_id )
+
+@if index( $padding_device_list, "desktop-only" )
+  +desktop-only
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .has-padding-desktop-only
+          @include create_padding( $position_list, $default_padding, $size_id )
+      @else
+        .has-padding-#{$size_id}-desktop-only
+          @include create_padding( $position_list, $default_padding, $size_id )
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .is-paddingless-desktop-only
+          @include create_padding( $position_list, 0, $size_id )
+      @else
+        .is-paddingless-#{$size_id}-desktop-only
+          @include create_padding( $position_list, 0, $size_id )
+
+@if index( $padding_device_list, "until-widescreen" )
+  +until-widescreen
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .has-padding-until-widescreen
+          @include create_padding( $position_list, $default_padding, $size_id )
+      @else
+        .has-padding-#{$size_id}-until-widescreen
+          @include create_padding( $position_list, $default_padding, $size_id )
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .is-paddingless-until-widescreen
+          @include create_padding( $position_list, 0, $size_id )
+      @else
+        .is-paddingless-#{$size_id}-until-widescreen
+          @include create_padding( $position_list, 0, $size_id )
+
+@if index( $padding_device_list, "widescreen" )
+  +widescreen
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .has-padding-widescreen
+          @include create_padding( $position_list, $default_padding, $size_id )
+      @else
+        .has-padding-#{$size_id}-widescreen
+          @include create_padding( $position_list, $default_padding, $size_id )
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .is-paddingless-widescreen
+          @include create_padding( $position_list, 0, $size_id )
+      @else
+        .is-paddingless-#{$size_id}-widescreen
+          @include create_padding( $position_list, 0, $size_id )
+
+@if index( $padding_device_list, "widescreen-only" )
+  +widescreen-only
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .has-padding-widescreen-only
+          @include create_padding( $position_list, $default_padding, $size_id )
+      @else
+        .has-padding-#{$size_id}-widescreen-only
+          @include create_padding( $position_list, $default_padding, $size_id )
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .is-paddingless-widescreen-only
+          @include create_padding( $position_list, 0, $size_id )
+      @else
+        .is-paddingless-#{$size_id}-widescreen-only
+          @include create_padding( $position_list, 0, $size_id )
+
+@if index( $padding_device_list, "until-fullhd" )
+  +until-fullhd
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .has-padding-until-fullhd
+          @include create_padding( $position_list, $default_padding, $size_id )
+      @else
+        .has-padding-#{$size_id}-until-fullhd
+          @include create_padding( $position_list, $default_padding, $size_id )
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .is-paddingless-until-fullhd
+          @include create_padding( $position_list, 0, $size_id )
+      @else
+        .is-paddingless-#{$size_id}-until-fullhd
+          @include create_padding( $position_list, 0, $size_id )
+
+@if index( $padding_device_list, "fullhd" )
+  +fullhd
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .has-padding-fullhd
+          @include create_padding( $position_list, $default_padding, $size_id )
+      @else
+        .has-padding-#{$size_id}-fullhd
+          @include create_padding( $position_list, $default_padding, $size_id )
+    @each $size_id, $position_list in $side_list
+      @if $size_id == "all"
+        .is-paddingless-fullhd
+          @include create_padding( $position_list, 0, $size_id )
+      @else
+        .is-paddingless-#{$size_id}-fullhd
+          @include create_padding( $position_list, 0, $size_id )
